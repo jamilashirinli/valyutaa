@@ -5,13 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Currency Converter</title>
-  <link rel="stylesheet" href="style.css">
- 
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header>
      <nav>
-        <img class='img1' src="/Asset 1@3x 1.png" alt="bank">
+        <img class='img1' src="Asset 1@3x 1.png" alt="bank">
         <p class="bank"><b>БАНК</b></p>
         <p class="biznes"><b>БИЗНЕС</b></p>
         <p class="investisiya"><b>ИНВЕСТИЦИИ</b></p>
@@ -39,7 +38,7 @@
           </div>
 
           <div class="input">
-            <input type="number" id="amount-one">
+            <input type="number" onkeydown="return event.keyCode !==69" onkeypress="return event.keyCode === 8 ||  event.charCode <= 57" id="cost-first">
             <p class="rate"></p>
           </div>
 
@@ -55,11 +54,11 @@
             <button class="left-try">TRY</button>
           </div>
           <div class="input">
-            <input type="number" id="amount-two">
+            <input type="number"  onkeydown="return event.keyCode !==69" onkeypress="return event.keyCode === 8 ||  event.charCode <= 57" id="cost-second">
             <p class="rate2"></p>
           </div>
         </div>
-        <script src="script.js"></script>
+        <script src="./script.js"></script>
       </div>
     </div>
   </main>
