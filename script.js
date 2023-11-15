@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
     document.querySelector(".currency-first button.right-rub").classList.add("selected");
     document.querySelector(".currency-second button.left-usd").classList.add("selected");
-  
-  
     currencyButtons1.forEach(function (button) {
       button.addEventListener("click", function () {
         currencyButtons1.forEach(function (btn) {
@@ -27,35 +25,35 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   
-    document.getElementById("amount-one").addEventListener("input", function () {
-      document.getElementById("amount-one").addEventListener("keyup", (event) => {
+    document.getElementById("cost-first").addEventListener("input", function () {
+      document.getElementById("cost-first").addEventListener("keyup", (event) => {
         if (event.target.value.split("")[0] == "." || event.target.value.split("")[0] == "-") {
-          let arr = event.target.value.split("");
+          let arr = event.target.value.split("");c
           arr.shift();
           event.target.value = Number(arr.join(""));
-          updateConvertedAmount(Number(event.target.value, "amount-two", ".currency-second button.selected", ".currency-first button.selected", ".rate"))
+          updateConvertedAmount(Number(event.target.value, "cost-second", ".currency-second button.selected", ".currency-first button.selected", ".rate"))
   
         } else {
-          updateConvertedAmount("amount-one", "amount-two", ".currency-second button.selected", ".currency-first button.selected", ".rate");
+          updateConvertedAmount("cost-first", "cost-second", ".currency-second button.selected", ".currency-first button.selected", ".rate");
   
         };
       })
   
     });
   
-    document.getElementById("amount-two").addEventListener("input", function () {
+    document.getElementById("cost-second").addEventListener("input", function () {
   
-      document.getElementById("amount-two").addEventListener("keyup", (event) => {
+      document.getElementById("cost-second").addEventListener("keyup", (event) => {
   
         if (event.target.value.split("")[0] == "." || event.target.value.split("")[0] == "-") {
           let arr = event.target.value.split("");
           arr.shift();
           event.target.value = Number(arr.join(""));
-          updateConvertedAmount(Number(event.target.value, "amount-one", ".currency-second button.selected", ".currency-first button.selected", ".rate2"))
+          updateConvertedAmount(Number(event.target.value, "cost-first", ".currency-second button.selected", ".currency-first button.selected", ".rate2"))
   
         } else {
   
-          updateConvertedAmount("amount-two", "amount-one", ".currency-second button.selected", ".currency-first button.selected", ".rate2");
+          updateConvertedAmount("cost-second", "cost-first", ".currency-second button.selected", ".currency-first button.selected", ".rate2");
   
         };
       })
@@ -70,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let fromCurrency = document.querySelector(".currency-first button.selected").textContent;
   
   
-    let apiKey = 'dea2e6123933d630b4b61bee';
+    let apiKey = 'c174d32b2e9d0faba28bb49f';
     let apiUrl = `https://open.er-api.com/v6/latest/${fromCurrency}?apikey=${apiKey}`;
   
     fetch(apiUrl)
@@ -81,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let rateElement2 = document.querySelector(".rate2");
         rateElement2.textContent = `1 ${toCurrency} = ${exchangeRate} ${fromCurrency}`;
         rateElement.textContent = `1 ${fromCurrency} = ${exchangeRate} ${toCurrency}`;
-        updateConvertedAmount("amount-one", "amount-two", ".currency-first button.selected", ".currency-second button.selected", ".rate2");
-        updateConvertedAmount("amount-one", "amount-two", ".currency-second button.selected", ".currency-first button.selected", ".rate");
+        updateConvertedAmount("cost-first", "cost-second", ".currency-first button.selected", ".currency-second button.selected", ".rate2");
+        updateConvertedAmount("cost-first", "cost-second", ".currency-second button.selected", ".currency-first button.selected", ".rate");
       })
       .catch(error => console.error("Error fetching exchange rates:", error));
   }
@@ -94,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let fromCurrency = document.querySelector(toCurrencySelector).textContent;
   
   
-    let apiKey = 'dea2e6123933d630b4b61bee';
+    let apiKey = 'c174d32b2e9d0faba28bb49f';
     let apiUrl = `https://open.er-api.com/v6/latest/${fromCurrency}?apikey=${apiKey}`;
   
     fetch(apiUrl)
@@ -106,6 +104,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
         toInputElement.value = convertedAmount.toFixed(4);
         
+if (toInputElement.value == 0.0000) {
+  toInputElement.value = ''
+}
         
   
         document.querySelector(rateElementSelector).textContent = `1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}`;
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let fromCurrency = document.querySelector(".currency-second button.selected").textContent;
     let toCurrency = document.querySelector(".currency-first button.selected").textContent;
   
-    let apiKey = 'dea2e6123933d630b4b61bee';
+    let apiKey = 'c174d32b2e9d0faba28bb49f';
     let apiUrl = `https://open.er-api.com/v6/latest/${fromCurrency}?apikey=${apiKey}`;
   
     fetch(apiUrl)
@@ -128,8 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let rateElement2 = document.querySelector(".rate2");
         rateElement2.textContent = `1 ${toCurrency} = ${exchangeRate} ${fromCurrency}`;
         rateElement.textContent = `1 ${fromCurrency} = ${exchangeRate} ${toCurrency}`;
-        updateConvertedAmount2("amount-two", "amount-one", ".currency-second button.selected", ".currency-first button.selected", ".rate");
-        updateConvertedAmount2("amount-two", "amount-one", ".currency-first button.selected", ".currency-second button.selected", ".rate2");
+        updateConvertedAmount2("cost-second", "cost-first", ".currency-second button.selected", ".currency-first button.selected", ".rate");
+        updateConvertedAmount2("cost-second", "cost-first", ".currency-first button.selected", ".currency-second button.selected", ".rate2");
       })
       .catch(error => console.error("Error fetching exchange rates:", error));
   }
@@ -141,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let toCurrency = document.querySelector(toCurrencySelector).textContent;
   
   
-    let apiKey = 'dea2e6123933d630b4b61bee';
+    let apiKey = 'c174d32b2e9d0faba28bb49f';
     let apiUrl = `https://open.er-api.com/v6/latest/${fromCurrency}?apikey=${apiKey}`;
   
     fetch(apiUrl)
@@ -150,13 +151,17 @@ document.addEventListener("DOMContentLoaded", function () {
         let exchangeRate = data.rates[toCurrency];
         let convertedAmount = (isNaN(amountFrom) ? 0 : amountFrom) * exchangeRate;
         let toInputElement = document.getElementById(toInputId);
-  
+        
       
         toInputElement.value = convertedAmount.toFixed(4);
         
         
+if (toInputElement.value == 0.0000) {
+  toInputElement.value = ''
+}
         document.querySelector(rateElementSelector).textContent = `1 ${fromCurrency} = ${exchangeRate.toFixed(4)} ${toCurrency}`;
       })
   
       .catch(error => console.error("Error fetching exchange rates:", error));
   }
+
